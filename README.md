@@ -1,4 +1,4 @@
-<p align="center"><img src="https://github.com/atharvakokatee/Academics_1/images/logo.jpg" alt="Academics logo"/></p>
+<p align="center"><img src="https://github.com/atharvakokatee/Academics_1/raw/master/assets/logo.jpg" alt="Academics logo"/></p>
 <p align="center">Academics is a solution for Interactive Distance Learning</p>
 
 ## Live Demo

@@ -1,0 +1,78 @@
+<%- include('../partials/header')  -%>
+
+<div class="site-section ftco-subscribe-1 site-blocks-cover pb-4" style="background-image: url('/images/bg_1.jpg')">
+    <div class="container">
+      <div class="row align-items-end">
+        <div class="col-lg-7">
+          <h2 class="mb-0"><%= course.title%></h2>
+          <p><%= course.description %></p>
+        </div>
+      </div>
+    </div>
+  </div> 
+
+<div class="custom-breadcrumns border-bottom">
+  <div class="container">
+    <a href="/">Home</a>
+    <span class="mx-3 icon-keyboard_arrow_right"></span>
+    <a href="/courses">Courses</a>
+    <span class="mx-3 icon-keyboard_arrow_right"></span>
+    <span class="current"><%= course.topic %></span>
+  </div>
+</div>
+
+<div class="site-section">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6 mb-4">
+                <p>
+                    <img src="<%= course.image %>" alt="Image" class="img-fluid">
+                </p>
+                <% if(currentUser && course.author.id.equals(currentUser._id)){ %>
+                    <a href="/courses/<%= course._id %>/edit" class="btn btn-primary rounded-0 btn-lg px-5">Edit</a>
+                    <form style="display: inline;" action="/courses/<%= course._id %>/?_method=DELETE" method="POST">
+                        <button class="btn btn-primary rounded-0 btn-lg px-5">Delete Course</button>
+                    </form>
+                <% } %>
+            </div>
+            <div class="col-lg-5 ml-auto align-self-center">
+                    <h2 class="section-title-underline mb-5">
+                        <span>Course Details</span>
+                    </h2>
+                    
+                    <p><strong class="text-black d-block">Teacher:</strong> <%= course.author.fullname %> (<strong><%= course.author.username %></strong>)</p>
+                    <p><strong class="text-black d-block">Price:</strong> <%= course.price %> Rs.</p>
+                    <p><strong class="text-black d-block">Students Enrolled:</strong> <%= course.students.length %></p>
+                    <p class="mb-5"><strong class="text-black d-block">Hours:</strong> 8:00 am &mdash; 9:30am</p>
+                    <p>Brief description of course: </p>
+                    <p><%= course.description %></p>
+
+                    <ul class="ul-check primary list-unstyled mb-5">
+                        <li>Lorem ipsum dolor sit amet consectetur</li>
+                        <li>consectetur adipisicing  </li>
+                        <li>Sit dolor repellat esse</li>
+                        <li>Necessitatibus</li>
+                        <li>Sed necessitatibus itaque </li>
+                    </ul>
+
+                    <p>
+                        <% if(currentUser && !course.author.id.equals(currentUser._id)){ %>
+                            <% if(!flag) { %>
+                                <form action="/courses/<%= course._id %>/enroll" method="post">
+                                    <button type="submit" class="btn btn-primary rounded-0 btn-lg px-5">Enroll in the Course</button>
+                                </form>
+                            <% } else { %>
+                                <button type="submit" class="btn btn-primary rounded-0 btn-lg px-5" disabled>Already Enrolled</button>
+                            <% } %>
+                        <% } %>
+                    </p>
+                    <p>
+                        <a href="/courses/<%= course._id %>/attendence" class="btn btn-primary rounded-0 btn-lg px-5">Check Attendence</a>
+                    </p>
+
+                </div>
+        </div>
+    </div>
+</div>
+
+<%- include('../partials/footer')  -%>
